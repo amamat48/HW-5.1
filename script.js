@@ -123,7 +123,7 @@ if (showingSubMenu === true) {
     var clickedLink = event.target
     var linkText = clickedLink.textContent
     var content = ''
-
+      // I tried checking if the target text doesn't equal 'about'
     if (linkText !== 'ABOUT') {
 
       content = '<h1>' + linkText.toLowerCase() + '</h1>'
