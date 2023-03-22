@@ -107,32 +107,33 @@ if (showingSubMenu === true) {
 
   subMenuEl.addEventListener('click', function(event) {
     event.preventDefault()
-    if (event.target.tagName !== 'A') return;
+    if (event.target.tagName !== 'A') return
 
-    console.log(event.target.textContent);
+    console.log(event.target.textContent)
 
-    showingSubMenu = false;
-    subMenuEl.style.top = '0';
+    showingSubMenu = false
+    subMenuEl.style.top = '0'
 
 
     topMenuLinks.forEach(function(link) {
-      link.classList.remove('active');
+      link.classList.remove('active')
     });
 
 
-    var clickedLink = event.target;
-    var linkText = clickedLink.textContent;
-    var content = '';
+    var clickedLink = event.target
+    var linkText = clickedLink.textContent
+    var content = ''
 
-    if (linkText === 'ABOUT') {
-      content = '<h1>about</h1>';
+    if (linkText !== 'ABOUT') {
+
+      content = '<h1>' + linkText.toLowerCase() + '</h1>'
     } else {
-      content = '<h1>' + linkText.toLowerCase() + '</h1>';
+      content = '<h1>about</h1>'
     }
 
-    mainEl.innerHTML = content;
+    mainEl.innerHTML = content
 
-   
+
     clickedLink.classList.add('active');
   });
 
