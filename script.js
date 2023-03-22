@@ -82,27 +82,65 @@ topMenuEl.addEventListener('click', function (event) {
 
   }
 
-  let link = menuLinks.find(l => l.href === event.target.href)
+  let link = menuLinks.find(l => l.text === event.target.textContent)
+
+console.log(link)
   if (link && link.subLinks) {
     showingSubMenu = true
-    buildSubMenu(link.subLinks)
-    subMenuEl.style.top = '100%'
+    console.log('showing sub menu is true')
   } else {
     showingSubMenu = false
     subMenuEl.style.top = '0'
   }
 
+
+if (showingSubMenu === true) {
+  buildSubMenu(link.subLinks)
+  subMenuEl.style.top = '100%'
+} else {
+  subMenuEl.style.top = '0'
+}
+
   for (let i = 0; i < topMenuLinks.length; i++) {
     topMenuLinks[i].classList.remove('active')
   }
 
-  // if (showingSubMenu === true) {
-  //   buildSubMenu(link.subLinks)
-  //   subMenuEl.style.top = '100%'
-  // } else {
-  //   subMenuEl.style.top = '0'
-  // }
-  // event.target.classList.remove('active')
+  subMenuEl.addEventListener('click', function(event) {
+    event.preventDefault()
+    if (event.target.tagName !== 'A') return;
+
+    console.log(event.target.textContent);
+
+    showingSubMenu = false;
+    subMenuEl.style.top = '0';
+
+
+    topMenuLinks.forEach(function(link) {
+      link.classList.remove('active');
+    });
+
+
+    var clickedLink = event.target;
+    var linkText = clickedLink.textContent;
+    var content = '';
+
+    if (linkText === 'ABOUT') {
+      content = '<h1>about</h1>';
+    } else {
+      content = '<h1>' + linkText.toLowerCase() + '</h1>';
+    }
+
+    mainEl.innerHTML = content;
+
+   
+    clickedLink.classList.add('active');
+  });
+
+
+
+
+
+
   event.target.classList.add('active')
   console.log(event.target.textContent)
 
